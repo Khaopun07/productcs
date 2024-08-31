@@ -1,0 +1,1 @@
+ C:\\khao\\productcs\\productcs\\.dart_tool\\flutter_build\\258321671340f9c33c5db4cef8bcbc6a\\native_assets.yaml: 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:productcs/pages/login_page.dart'; // Adjust path according to your directory structure
-import 'package:productcs/pages/register_page.dart'; // Adjust path according to your directory structure
+import 'package:productcs/pages/login_page.dart';
+import 'package:productcs/pages/register_page.dart';
+import 'package:productcs/pages/user.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        '/register': (context) => RegisterPage(),
+        '/user': (context) => UserPage(), 
+      },
     );
   }
 }

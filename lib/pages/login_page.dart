@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:productcs/controllers/auth_service.dart';
+import 'package:productcs/pages/user.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,20 +15,19 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
     if (_formKey.currentState?.validate() ?? false) {
-       print('Username: ${_usernameController.text}');
+      print('Username: ${_usernameController.text}');
       print('Password: ${_passwordController.text}');
 
-
       try {
-        // Perform login
-         await AuthService().login(_usernameController.text, _passwordController.text);
-        
-        // Provide feedback or navigate after successful login
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login successful')),
-        );
+        bool success = await AuthService().login(_usernameController.text, _passwordController.text);
+        if (success) {
+          Navigator.pushReplacementNamed(context, '/user'); // Navigate to the User screen
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Login failed. Please try again.')),
+          );
+        }
       } catch (e) {
-        // Handle login errors
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login failed: $e')),
         );
@@ -39,6 +39,12 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => RegisterPage()),
+    );
+  }
+  void _navigateToLogin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => UserPage()),
     );
   }
 
@@ -144,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildLoginButton() {
     return ElevatedButton(
-      onPressed: _login,
+      onPressed: _navigateToLogin,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 80.0),
         shape: RoundedRectangleBorder(

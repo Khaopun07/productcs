@@ -133,8 +133,8 @@ class _RegisterPageState extends State<RegisterPage> {
               _selectedRole = role;
             });
           },
-          selectedColor: Color.fromARGB(255, 255, 74, 19),
-          backgroundColor: Colors.white,
+          selectedColor: Color.fromARGB(255, 114, 165, 224),
+          backgroundColor: const Color.fromARGB(255, 213, 213, 213),
           labelStyle: TextStyle(color: _selectedRole == role ? Colors.white : Colors.black),
         );
       }).toList(),
